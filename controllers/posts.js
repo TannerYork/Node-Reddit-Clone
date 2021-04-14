@@ -1,4 +1,4 @@
-const Post = require('../models/Post');
+const Post = require('../models/Post.js');
 
 module.exports = function(app) {
     app.get('/', (req, res) => {
@@ -25,7 +25,7 @@ module.exports = function(app) {
     app.get("/posts/:id", (req, res) => {
         // LOOK UP THE POST
         Post.findById(req.params.id).lean().populate('comments').then((post) => {
-            res.render('post-show', { post })
+            res.render('posts-show', { post })
         })
         .catch(err => {
             console.log(err.message);

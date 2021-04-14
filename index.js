@@ -23,6 +23,7 @@ app.use(expressValidator());
 
 // Setup Controllers
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 
 // Listen to Port
 app.listen(process.env.PORT, () => {

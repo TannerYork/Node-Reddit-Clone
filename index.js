@@ -3,7 +3,6 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const routes = require('./routes/index');
 dotenv.config()
 
 
@@ -22,8 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
-// Use Routers
-app.use('/', routes.post);
+// Setup Controllers
+require('./controllers/posts.js')(app);
 
 // Listen to Port
 app.listen(process.env.PORT, () => {

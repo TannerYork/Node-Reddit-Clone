@@ -23,12 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 // Use Routers
-app.use('/posts', routes.post);
+app.use('/', routes.post);
 
-app.get('/', (req, res) => {
-    res.render('home')
-});
-
+// Listen to Port
 app.listen(process.env.PORT, () => {
     console.log(`Reddit.js listening on http://localhost:${[process.env.PORT]}`)
 });

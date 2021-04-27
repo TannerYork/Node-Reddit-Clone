@@ -23,4 +23,9 @@ module.exports = function(app) {
           });
     });
 
+    app.get('/logout', (req, res) => {
+        res.clearCookie('nToken');
+        res.redirect('/');
+    });
+
 }

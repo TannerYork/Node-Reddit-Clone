@@ -7,7 +7,7 @@ module.exports = function(app) {
             res.render('posts-index', { posts });
         })
         .catch(err => {
-            console.log(err);
+            console.log(err.message);
         });
     });
     
@@ -16,10 +16,14 @@ module.exports = function(app) {
     });
     
     app.post('/posts/new', (req, res) => {
-        const post  = new Post(req.body);
-        post.save((err, post) => {
-            return res.redirect('/');
-        });
+        if (req.user) {
+            const post  = new Post(req.body);
+            post.save((err, post) => {
+                return res.redirect('/');
+            });
+        } else {
+            return res.status(401); // UNAUTHORIZED
+        }
     });
     
     app.get("/posts/:id", (req, res) => {
